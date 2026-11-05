@@ -97,3 +97,15 @@ When reviewing the benchmarking results, it's important to understand what each 
 *   Ideally, an effective integration method will show **high scores for batch correction metrics** (e.g., Graph Connectivity, LISI Batch) and **high scores for biological conservation metrics** (e.g., Silhouette, NMI/ARI for true labels). There is often a trade-off between these two categories.
 *   When comparing different embeddings (`X_pca_unintegrated`, `X_harmony`, `X_scvi`, `X_tsne`, `X_diffmap`), look for methods that strike a good balance. For example, `X_harmony` and `X_scvi` are expected to outperform `X_pca_unintegrated` in batch correction, while ideally maintaining or improving biological conservation.
 *   Clustering metrics like KMeans NMI and ARI on specific embeddings (e.g., `X_diffmap`) can reveal which embeddings are most amenable to particular clustering algorithms for discerning biological groups.
+
+## Molecular dynamics utilities
+
+The `molecular_dynamics` directory contains a corrected HOOMD-blue polymer
+example and an OVITO renderer:
+
+```bash
+pip install -r molecular_dynamics/requirements.txt
+python molecular_dynamics/run_simulation.py --steps 250000
+python molecular_dynamics/visualize_trajectory.py \
+  md_output/trajectory.gsd --frame 100 -o md_output/frame-100.png
+```
